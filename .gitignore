@@ -12,6 +12,7 @@ target/
 *.iml
 *.ipr
 .idea/checkstyle-idea.xml
+.idea/checkstyleidea-libs
 
 ### Eclipse ###
 .apt_generated
