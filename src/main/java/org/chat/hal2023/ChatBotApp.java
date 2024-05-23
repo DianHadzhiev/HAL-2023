@@ -13,7 +13,7 @@ public class ChatBotApp extends Application {
     @Override
     public void start(Stage chatStage) throws Exception {
         this.mainStage = chatStage;
-        showLoginScene();
+        showChatScene();
     }
 
 
