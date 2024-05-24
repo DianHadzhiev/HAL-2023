@@ -2,11 +2,11 @@ package org.chat.hal2023;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -19,13 +19,15 @@ public class ChatBotController {
     @FXML
     private TextField inputField;
 
+    @FXML
+    private TabPane tabPane; // Zorg ervoor dat tabPane correct geïnjecteerd is
+
     private ChatBot chatBot = new ChatBot();
 
     @FXML
     private void sendMessage(ActionEvent event) {
         String message = inputField.getText();
         if (!message.trim().isEmpty()) {
-            message = inputField.getText();
             displayMessage("You: " + message);
             String response = chatBot.getResponse(message);
             displayMessage("Bot: " + response);
@@ -38,7 +40,15 @@ public class ChatBotController {
     }
 
     @FXML
-    private TabPane tabPane;
+    private void deleteTab(ActionEvent event) {
+        // Get the currently selected tab
+        Tab selectedTab = tabPane.getSelectionModel().getSelectedItem();
+
+        // Check if the selected tab is not null and not the "+" tab
+        if (selectedTab != null && !"+".equals(selectedTab.getText())) {
+            tabPane.getTabs().remove(selectedTab);
+        }
+    }
 
     @FXML
     private void addNewTab(ActionEvent event) {
@@ -47,9 +57,16 @@ public class ChatBotController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("ChatTabContent.fxml"));
             AnchorPane newTabContent = loader.load();
 
+            // Get the controller for the new tab content
+            ChatTabController chatTabController = loader.getController();
+
             // Create a new tab with the loaded content
-            Tab newTab = new Tab("Chat " + tabPane.getTabs().size());
+            Tab newTab = new Tab("Chat " + (tabPane.getTabs().size() - 1));
             newTab.setContent(newTabContent);
+
+            // Pass the TabPane and Tab to the controller
+            chatTabController.setTabPane(tabPane);
+            chatTabController.setTab(newTab);
 
             // Add the new tab to the TabPane before the "+" tab
             tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);
@@ -60,6 +77,4 @@ public class ChatBotController {
             e.printStackTrace();
         }
     }
-
-
 }
