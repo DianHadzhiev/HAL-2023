@@ -19,7 +19,7 @@ public class ChatBotController {
     @FXML
     private TextField inputField;
 
-    private ChatBot chatBot = new ChatBot();
+    private ChatBotResponse chatBot = new ChatBotResponse();
 
     @FXML
     private void sendMessage(ActionEvent event) {

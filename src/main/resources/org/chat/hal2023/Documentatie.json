@@ -1,0 +1,23 @@
+[
+        {
+        "keyword": "java",
+        "response": "Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible."
+        },
+        {
+        "keyword": "json",
+        "response": "JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate."
+        },
+        {
+        "keyword": "chatbot",
+        "response": "A chatbot is a software application used to conduct an online chat conversation via text or text-to-speech, instead of providing direct contact with a live human agent."
+        },
+        {
+        "keyword": "javafx",
+        "response": "JavaFX is a software platform for creating and delivering desktop applications, as well as rich internet applications (RIAs) that can run across a wide variety of devices."
+        },
+        {
+        "keyword": "gson",
+        "response": "Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object."
+        }
+
+        ]
