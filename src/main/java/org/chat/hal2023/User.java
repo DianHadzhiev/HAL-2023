@@ -21,22 +21,26 @@ public class User {
     public User() {
     }
 
+    /**
+     * Username getter.
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    /**
+     * Password getter.
+     * @return password
+     */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
+    /**
+     * Email getter.
+     * @return email
+     */
     public String getEmail() {
         return email;
     }
