@@ -7,9 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class LoginController {
-    // functie voor inloggen die erna chatScene toont op te mainStage
-
-    private ChatBotApp app;
 
     @FXML
     private TextField usernameInput;
@@ -17,27 +14,17 @@ public class LoginController {
     @FXML
     private PasswordField passwordInput;
 
-    private Stage primaryStage;
-
-    private Scene chatScene;
-
-    public void setMainApp(ChatBotApp app) {
-        this.app = app;
-    }
+    private ChatBotApp app;
 
     @FXML
     private void logIn() {
         User user = new User();
         if (user.getUsername().equals(this.usernameInput.getText()) && user.getPassword().equals(this.passwordInput.getText())) {
-            this.primaryStage.setScene(chatScene);
+            this.app.switchToChatScene();
         }
     }
 
-    public void setPrimaryStage(Stage stage) {
-        this.primaryStage = stage;
-    }
-
-    public void setChatScene(Scene scene) {
-        this.chatScene = scene;
+    public void setApp(ChatBotApp app) {
+        this.app = app;
     }
 }
