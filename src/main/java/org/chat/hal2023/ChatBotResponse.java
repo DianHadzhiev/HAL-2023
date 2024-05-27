@@ -1,16 +1,17 @@
 package org.chat.hal2023;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
 public class ChatBotResponse {
+
     private JsonArray documentation;
-
-
 
     public ChatBotResponse() {
         try {
@@ -18,7 +19,6 @@ public class ChatBotResponse {
             JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(inputStream));
 
             documentation = jsonElement.getAsJsonArray();
-
 
             inputStream.close();
         } catch (IOException e) {
