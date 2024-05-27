@@ -33,7 +33,7 @@ public class ChatTabController {
         if (!message.trim().isEmpty()) {
             displayMessage("You: " + message);
             // Assuming there's a method to get a response from the ChatBot
-            ChatBot chatBot = new ChatBot();
+            ChatBotResponse chatBot = new ChatBotResponse();
             String response = chatBot.getResponse(message);
             displayMessage("Bot: " + response);
             inputField.clear();
