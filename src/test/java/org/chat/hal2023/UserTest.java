@@ -6,8 +6,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Testing the proper behaviour of the {@link User User} class.
+ *
+ * @author Anne
+ */
 public class UserTest {
 
+    /**
+     * When the email of the User is changed, the new email has to follow a
+     * proper email format. This test ensures this actually happens.
+     */
     @Test
     public void testEmailValidation() {
         User testUser = new User();
