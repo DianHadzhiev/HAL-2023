@@ -14,7 +14,7 @@ public class ChatBotResponse {
 
     public ChatBotResponse() {
         try {
-            InputStream inputStream = getClass().getResourceAsStream("Documentatie.json");
+            InputStream inputStream = getClass().getResourceAsStream("DocumentatieENG.json");
             JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(inputStream));
 
             documentation = jsonElement.getAsJsonArray();
