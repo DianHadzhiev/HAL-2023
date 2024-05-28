@@ -19,6 +19,8 @@ public class ChatTabController {
 
     private Tab tab;
 
+    private LanguageManager languageManager;
+
     public void setTabPane(TabPane tabPane) {
         this.tabPane = tabPane;
     }
@@ -27,13 +29,17 @@ public class ChatTabController {
         this.tab = tab;
     }
 
+    public void setLanguageManager(LanguageManager languageManager) {
+        this.languageManager = languageManager;
+    }
+
     @FXML
     private void sendMessage(ActionEvent event) {
         String message = inputField.getText();
         if (!message.trim().isEmpty()) {
             displayMessage("You: " + message);
             // Assuming there's a method to get a response from the ChatBot
-            ChatBotResponse chatBot = new ChatBotResponse();
+            ChatBotResponse chatBot = new ChatBotResponse(this.languageManager);
             String response = chatBot.getResponse(message);
             displayMessage("Bot: " + response);
             inputField.clear();

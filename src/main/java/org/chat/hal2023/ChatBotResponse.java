@@ -9,21 +9,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-public class ChatBotResponse {
+public class ChatBotResponse implements LanguageListener {
 
     private JsonArray documentation;
 
-    public ChatBotResponse() {
-        try {
-            InputStream inputStream = getClass().getResourceAsStream("Documentatie.json");
-            JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(inputStream));
+    private LanguageManager languageManager;
 
-            documentation = jsonElement.getAsJsonArray();
+    private LanguageStrategy languageStrategy;
 
-            inputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public ChatBotResponse(LanguageManager languageManager) {
+        this.languageManager = languageManager;
+        this.languageManager.subscribe(this);
+        this.updateJSONStream(this.languageStrategy.getResponseFile());
     }
 
     public String getResponse(String message) {
@@ -34,5 +31,24 @@ public class ChatBotResponse {
             }
         }
         return "No documentation found for keyword: " + message;
+    }
+
+    @Override
+    public void updateLanguage(LanguageContext languageContext) {
+        this.languageStrategy = languageContext.getStrategy();
+        this.updateJSONStream(languageStrategy.getResponseFile());
+    }
+
+    private void updateJSONStream(String fileName) {
+        try {
+            InputStream inputStream = getClass().getResourceAsStream(fileName);
+            JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(inputStream));
+
+            documentation = jsonElement.getAsJsonArray();
+
+            inputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

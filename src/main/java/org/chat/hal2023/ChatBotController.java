@@ -19,7 +19,9 @@ public class ChatBotController {
     @FXML
     private TextField inputField;
 
-    private ChatBotResponse chatBot = new ChatBotResponse();
+    private LanguageManager languageManager = new LanguageManager();
+
+    private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
 
     @FXML
     private TabPane tabPane; // Zorg ervoor dat tabPane correct geïnjecteerd is
@@ -60,6 +62,8 @@ public class ChatBotController {
             // Get the controller for the new tab content
             ChatTabController chatTabController = loader.getController();
 
+            chatTabController.setLanguageManager(this.languageManager);
+
             // Create a new tab with the loaded content
             Tab newTab = new Tab("Chat " + (tabPane.getTabs().size() - 1));
             newTab.setContent(newTabContent);
@@ -76,5 +80,10 @@ public class ChatBotController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void changeLanguage(ActionEvent event) {
+        this.languageManager.changeLanguageStrategy();
     }
 }
