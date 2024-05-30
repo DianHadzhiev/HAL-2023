@@ -19,6 +19,9 @@ public class ChatBotController {
     @FXML
     private TextField inputField;
 
+    @FXML
+    private TextField addTabNameField; // Zorg ervoor dat dit correct wordt geïnjecteerd
+
     private ChatBotResponse chatBot = new ChatBotResponse();
 
     @FXML
@@ -60,19 +63,25 @@ public class ChatBotController {
             // Get the controller for the new tab content
             ChatTabController chatTabController = loader.getController();
 
-            // Create a new tab with the loaded content
-            Tab newTab = new Tab("Chat " + (tabPane.getTabs().size() - 1));
-            newTab.setContent(newTabContent);
+            // Get the tab name from the input field
+            String tabNameText = addTabNameField.getText().trim();
+            if (!tabNameText.isEmpty()) {
+                Tab newTab = new Tab(tabNameText);
+                newTab.setContent(newTabContent);
 
-            // Pass the TabPane and Tab to the controller
-            chatTabController.setTabPane(tabPane);
-            chatTabController.setTab(newTab);
+                // Pass the TabPane and Tab to the controller
+                chatTabController.setTabPane(tabPane);
+                chatTabController.setTab(newTab);
 
-            // Add the new tab to the TabPane before the "+" tab
-            tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);
+                // Add the new tab to the TabPane before the "+" tab
+                tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);
 
-            // Select the new tab
-            tabPane.getSelectionModel().select(newTab);
+                // Select the new tab
+                tabPane.getSelectionModel().select(newTab);
+
+                // Clear the text field after adding the new tab
+                addTabNameField.clear();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

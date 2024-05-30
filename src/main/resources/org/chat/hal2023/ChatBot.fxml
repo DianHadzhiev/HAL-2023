@@ -19,7 +19,7 @@
                                 <children>
                                     <ListView fx:id="chatListView" layoutX="50.0" layoutY="14.0" prefHeight="500.0" prefWidth="700.0" />
                                     <TextField fx:id="inputField" layoutX="150.0" layoutY="520.0" prefHeight="30.0" prefWidth="500.0" promptText="Schrijf een prompt" />
-                                    <Button defaultButton="true" layoutX="585.0" layoutY="522.0" onAction="#sendMessage" text="Verstuur"/>
+                                    <Button defaultButton="true" layoutX="585.0" layoutY="522.0" onAction="#sendMessage" text="Verstuur" />
                                     <Button layoutX="710.0" layoutY="520.0" onAction="#deleteTab" text="Verwijder" />
                                 </children>
                             </AnchorPane>
@@ -29,7 +29,8 @@
                         <content>
                             <AnchorPane>
                                 <children>
-                                    <Button layoutX="400.0" layoutY="300.0" onAction="#addNewTab" text="+" />
+                                    <TextField fx:id="addTabNameField" layoutX="336.0" layoutY="260.0" promptText="gespreks naam" /> <!-- Voeg deze regel toe -->
+                                    <Button layoutX="399.0" layoutY="286.0" onAction="#addNewTab" text="+" />
                                 </children>
                             </AnchorPane>
                         </content>
