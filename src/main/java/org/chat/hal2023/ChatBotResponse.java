@@ -8,6 +8,7 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.String;
 
 public class ChatBotResponse implements LanguageListener {
 
@@ -30,13 +31,21 @@ public class ChatBotResponse implements LanguageListener {
      * @return The response according to user input.
      */
     public String getResponse(String message) {
+        // Split the message into words (optional: convert to lowercase for case-insensitive matching)
+        String[] messageWords = message.toLowerCase().split("\\s+");
+
         for (JsonElement element : documentation) {
             JsonObject doc = element.getAsJsonObject();
-            if (doc.get("keyword").getAsString().equalsIgnoreCase(message)) {
-                return doc.get("response").getAsString();
+            String keyword = doc.get("keyword").getAsString().toLowerCase();
+
+            // Check if any word in the message matches the keyword
+            for (String word : messageWords) {
+                if (word.equals(keyword)) {
+                    return doc.get("response").getAsString();
+                }
             }
         }
-        return "No documentation found for keyword: " + message;
+        return "No documentation found for: " + message;
     }
 
     /**

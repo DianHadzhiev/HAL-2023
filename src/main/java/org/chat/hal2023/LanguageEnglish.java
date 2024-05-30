@@ -2,7 +2,7 @@ package org.chat.hal2023;
 
 public class LanguageEnglish implements LanguageStrategy{
 
-    private final String responseFile = null;
+    private final String responseFile = "DocumentatieENG.json";
 
     /**
      * Getter for the {@link LanguageEnglish#responseFile responseFile} field.
