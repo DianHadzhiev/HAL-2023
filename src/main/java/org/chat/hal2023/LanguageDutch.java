@@ -4,6 +4,10 @@ public class LanguageDutch implements LanguageStrategy {
 
     private final String responseFile = "Documentatie.json";
 
+    /**
+     * Getter for the {@link LanguageDutch#responseFile responseFile} field.
+     * @return the current responseFile
+     */
     @Override
     public String getResponseFile() {
         return this.responseFile;

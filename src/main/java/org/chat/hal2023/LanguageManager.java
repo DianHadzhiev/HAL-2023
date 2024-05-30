@@ -13,6 +13,11 @@ public class LanguageManager {
         this.languageContext = new LanguageContext();
     }
 
+    /**
+     * Add a new {@link LanguageListener listener} to the
+     * {@link LanguageManager#listeners listeners} list.
+     * @param listener the new listener to be added
+     */
     public void subscribe(LanguageListener listener) {
         listener.updateLanguage(this.languageContext);
         this.listeners.add(listener);
@@ -23,8 +28,7 @@ public class LanguageManager {
     }
 
     public void updateListeners() {
-        for (LanguageListener l:
-             listeners) {
+        for (LanguageListener l : listeners) {
             l.updateLanguage(this.languageContext);
         }
     }

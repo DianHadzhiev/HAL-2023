@@ -23,6 +23,12 @@ public class ChatBotResponse implements LanguageListener {
         this.updateJSONStream(this.languageStrategy.getResponseFile());
     }
 
+    /**
+     * Takes the message sent by the user and responds with an appropriate
+     * answer.
+     * @param message The user input
+     * @return The response according to user input.
+     */
     public String getResponse(String message) {
         for (JsonElement element : documentation) {
             JsonObject doc = element.getAsJsonObject();
@@ -33,6 +39,12 @@ public class ChatBotResponse implements LanguageListener {
         return "No documentation found for keyword: " + message;
     }
 
+    /**
+     * Changes this objects own language strategy to the one of the
+     * LanguageContext. Afterward, requests the JSONStream to be updated
+     * according to the new strategy.
+     * @param languageContext
+     */
     @Override
     public void updateLanguage(LanguageContext languageContext) {
         this.languageStrategy = languageContext.getStrategy();
@@ -42,7 +54,8 @@ public class ChatBotResponse implements LanguageListener {
     private void updateJSONStream(String fileName) {
         try {
             InputStream inputStream = getClass().getResourceAsStream(fileName);
-            JsonElement jsonElement = JsonParser.parseReader(new InputStreamReader(inputStream));
+            JsonElement jsonElement = JsonParser.parseReader(
+                    new InputStreamReader(inputStream));
 
             documentation = jsonElement.getAsJsonArray();
 
