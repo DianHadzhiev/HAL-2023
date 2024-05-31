@@ -30,14 +30,22 @@ public class ChatBotResponse implements LanguageListener {
      * @return The response according to user input.
      */
     public String getResponse(String message) {
+        String[] messageWords = message.toLowerCase().split("\\s+");
+
         for (JsonElement element : documentation) {
             JsonObject doc = element.getAsJsonObject();
-            if (doc.get("keyword").getAsString().equalsIgnoreCase(message)) {
-                return doc.get("response").getAsString();
+            String keyword = doc.get("keyword").getAsString().toLowerCase();
+
+            // Check if any word in the message matches the keyword
+            for (String word : messageWords) {
+                if (word.equals(keyword)) {
+                    return doc.get("response").getAsString();
+                }
             }
         }
-        return "No documentation found for keyword: " + message;
+        return "No documentation found for: " + message;
     }
+
 
     /**
      * Changes this objects own language strategy to the one of the
