@@ -11,20 +11,35 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ChatBotController {
-
+public class Session {
     @FXML
     private ListView<String> chatListView;
 
     @FXML
     private TextField inputField;
 
+    @FXML
+    private TabPane tabPane; // Zorg ervoor dat tabPane correct geïnjecteerd is
+
+    @FXML
+    private Tab tab;
+
     private LanguageManager languageManager = new LanguageManager();
 
     private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
 
-    @FXML
-    private TabPane tabPane; // Zorg ervoor dat tabPane correct geïnjecteerd is
+    public void setTabPane(TabPane tabPane) {
+        this.tabPane = tabPane;
+    }
+
+    public void setTab(Tab tab) {
+        this.tab = tab;
+    }
+
+    public void setLanguageManager(LanguageManager languageManager) {
+        this.languageManager = languageManager;
+    }
+
 
     @FXML
     private void sendMessage(ActionEvent event) {
@@ -60,17 +75,17 @@ public class ChatBotController {
             AnchorPane newTabContent = loader.load();
 
             // Get the controller for the new tab content
-            ChatTabController chatTabController = loader.getController();
+            Session session = loader.getController();
 
-            chatTabController.setLanguageManager(this.languageManager);
+            session.setLanguageManager(this.languageManager);
 
             // Create a new tab with the loaded content
             Tab newTab = new Tab("Chat " + (tabPane.getTabs().size() - 1));
             newTab.setContent(newTabContent);
 
             // Pass the TabPane and Tab to the controller
-            chatTabController.setTabPane(tabPane);
-            chatTabController.setTab(newTab);
+            session.setTabPane(tabPane);
+            session.setTab(newTab);
 
             // Add the new tab to the TabPane before the "+" tab
             tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);
@@ -80,10 +95,5 @@ public class ChatBotController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @FXML
-    private void changeLanguage(ActionEvent event) {
-        this.languageManager.changeLanguageStrategy();
     }
 }
