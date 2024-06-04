@@ -11,8 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class ChatBotController {
-
+public class Session {
     @FXML
     private ListView<String> chatListView;
 
@@ -22,10 +21,28 @@ public class ChatBotController {
     @FXML
     private TextField addTabNameField; // Zorg ervoor dat dit correct wordt geïnjecteerd
 
-    private ChatBotResponse chatBot = new ChatBotResponse();
-
     @FXML
     private TabPane tabPane; // Zorg ervoor dat tabPane correct geïnjecteerd is
+
+    @FXML
+    private Tab tab;
+
+    private LanguageManager languageManager = new LanguageManager();
+
+    private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
+
+    public void setTabPane(TabPane tabPane) {
+        this.tabPane = tabPane;
+    }
+
+    public void setTab(Tab tab) {
+        this.tab = tab;
+    }
+
+    public void setLanguageManager(LanguageManager languageManager) {
+        this.languageManager = languageManager;
+    }
+
 
     @FXML
     private void sendMessage(ActionEvent event) {
@@ -61,7 +78,9 @@ public class ChatBotController {
             AnchorPane newTabContent = loader.load();
 
             // Get the controller for the new tab content
-            ChatTabController chatTabController = loader.getController();
+            Session session = loader.getController();
+
+            session.setLanguageManager(this.languageManager);
 
             // Get the tab name from the input field
             String tabNameText = addTabNameField.getText().trim();
@@ -69,9 +88,9 @@ public class ChatBotController {
                 Tab newTab = new Tab(tabNameText);
                 newTab.setContent(newTabContent);
 
-                // Pass the TabPane and Tab to the controller
-                chatTabController.setTabPane(tabPane);
-                chatTabController.setTab(newTab);
+            // Pass the TabPane and Tab to the controller
+            session.setTabPane(tabPane);
+            session.setTab(newTab);
 
                 // Add the new tab to the TabPane before the "+" tab
                 tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);

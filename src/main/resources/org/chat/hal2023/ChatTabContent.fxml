@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.chat.hal2023.ChatTabController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.chat.hal2023.Session">
     <children>
         <ListView fx:id="chatListView" layoutX="50.0" layoutY="14.0" prefHeight="500.0" prefWidth="700.0" />
         <TextField fx:id="inputField" layoutX="150.0" layoutY="520.0" prefHeight="30.0" prefWidth="500.0" promptText="Type a message..." />
