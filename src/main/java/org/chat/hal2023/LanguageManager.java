@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 public class LanguageManager {
 
+    /**
+     * List containing all objects that need to be kept up to date with the
+     * used language.
+     */
     private final ArrayList<LanguageListener> listeners;
 
-    private LanguageContext languageContext;
+    /**
+     * Object that contains the current LanguageStrategy used.
+     */
+    private final LanguageContext languageContext;
 
     public LanguageManager() {
         this.listeners = new ArrayList<>();
@@ -23,16 +30,29 @@ public class LanguageManager {
         this.listeners.add(listener);
     }
 
+    /**
+     * Remove a listener from the list of object to be updated when the
+     * language is changed.
+     * @param listener Listener to be removed
+     */
     public void unsubscribe(LanguageListener listener) {
         this.listeners.remove(listener);
     }
 
+    /**
+     * Change the language in all the listener objects in the
+     * {@link LanguageManager#listeners listeners} list.
+     */
     public void updateListeners() {
         for (LanguageListener l : listeners) {
             l.updateLanguage(this.languageContext);
         }
     }
 
+    /**
+     * Switch from one language to the other. Currently only supports two
+     * languages.
+     */
     public void changeLanguageStrategy() {
         if (this.languageContext.getStrategy() instanceof LanguageDutch) {
             this.languageContext.setStrategy(new LanguageEnglish());

@@ -2,6 +2,10 @@ package org.chat.hal2023;
 
 public class LanguageDutch implements LanguageStrategy {
 
+
+    /**
+     * Name of the file that contains all data for this Language.
+     */
     private final String responseFile = "DocumentatieNL.json";
 
     /**

@@ -11,12 +11,27 @@ import java.io.InputStreamReader;
 
 public class ChatBotResponse implements LanguageListener {
 
+    /**
+     * Array that contains all responses for user inputs.
+     */
     private JsonArray documentation;
 
+    /**
+     * Object that keeps track of which language is currently used.
+     */
     private LanguageManager languageManager;
 
+    /**
+     * Object that contains the current used language.
+     */
     private LanguageStrategy languageStrategy;
 
+    /**
+     * Constructor. Makes sure that when this object is made the language is
+     * ready to be used.
+     * @param languageManager Object that keeps track of the language that is
+     *                        used
+     */
     public ChatBotResponse(LanguageManager languageManager) {
         this.languageManager = languageManager;
         this.languageManager.subscribe(this);
@@ -45,7 +60,6 @@ public class ChatBotResponse implements LanguageListener {
         }
         return "No documentation found for: " + message;
     }
-
 
     /**
      * Changes this objects own language strategy to the one of the

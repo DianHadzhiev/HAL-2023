@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class Session {
+
     @FXML
     private ListView<String> chatListView;
 
@@ -31,18 +32,34 @@ public class Session {
 
     private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
 
+    /**
+     * Setter for the {@link Session#tabPane tabPane} field.
+     * @param tabPane TabPane object that needs to be set into the
+     *                {@link Session#tabPane tabPane} field
+     */
     public void setTabPane(TabPane tabPane) {
         this.tabPane = tabPane;
     }
 
+    /**
+     * Setter for the {@link Session#tab tab} field.
+     * @param tab Tab object that needs to be set into the
+     *            {@link Session#tab tab} field
+     */
     public void setTab(Tab tab) {
         this.tab = tab;
     }
 
+    /**
+     * Setter for the {@link Session#languageManager languageManager} field.
+     * @param languageManager LanguageManager object that needs to be set into
+     *                        the
+     *                        {@link Session#languageManager languageManager}
+     *                        field
+     */
     public void setLanguageManager(LanguageManager languageManager) {
         this.languageManager = languageManager;
     }
-
 
     @FXML
     private void sendMessage(ActionEvent event) {
