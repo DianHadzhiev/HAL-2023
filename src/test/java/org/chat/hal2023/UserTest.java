@@ -19,11 +19,11 @@ public class UserTest {
      */
     @Test
     public void testEmailValidation() {
-        User testUser = new User();
+        User testUser = User.getInstance();
         assertEquals("email@domain.net", testUser.getEmail());
-        assertTrue(testUser.setEmail("newmail@newdomain.newnet"));
+        assertTrue(testUser.checkNewEmail("newmail@newdomain.newnet"));
         assertEquals("newmail@newdomain.newnet", testUser.getEmail());
-        assertFalse(testUser.setEmail("bogusinput"));
+        assertFalse(testUser.checkNewEmail("bogusinput"));
         assertEquals("newmail@newdomain.newnet", testUser.getEmail());
     }
 }

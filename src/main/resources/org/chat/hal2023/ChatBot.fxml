@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.chat.hal2023.Session">
     <AnchorPane prefHeight="600.0" prefWidth="800.0">
         <children>
-            <TabPane fx:id="tabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+         <Pane layoutX="454.0" prefHeight="200.0" prefWidth="346.0" />
+            <TabPane fx:id="tabPane" layoutY="30.0" prefHeight="572.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
                 <tabs>
-                    <Tab text="Chat 1">
-                        <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                <children>
-                                    <ListView fx:id="chatListView" layoutX="50.0" layoutY="14.0" prefHeight="500.0" prefWidth="700.0" />
-                                    <TextField fx:id="inputField" layoutX="150.0" layoutY="520.0" prefHeight="30.0" prefWidth="500.0" promptText="Schrijf een prompt" />
-                                    <Button defaultButton="true" layoutX="585.0" layoutY="522.0" onAction="#sendMessage" text="Verstuur" />
-                                    <Button layoutX="710.0" layoutY="520.0" onAction="#deleteTab" text="Verwijder" />
-                                </children>
-                            </AnchorPane>
-                        </content>
-                    </Tab>
                     <Tab fx:id="addTab" closable="false" text="+">
                         <content>
-                            <AnchorPane>
+                            <AnchorPane prefHeight="543.0" prefWidth="800.0">
                                 <children>
-                                    <TextField fx:id="addTabNameField" layoutX="336.0" layoutY="260.0" promptText="gespreks naam" /> <!-- Voeg deze regel toe -->
-                                    <Button layoutX="399.0" layoutY="286.0" onAction="#addNewTab" text="+" />
+                                    <TextField fx:id="addTabNameField" layoutX="323.0" layoutY="260.0" promptText="gespreks naam" /> <!-- Voeg deze regel toe -->
+                                    <Button layoutX="385.0" layoutY="295.0" onAction="#addNewTab" text="+" />
                                 </children>
                             </AnchorPane>
                         </content>
                     </Tab>
                 </tabs>
             </TabPane>
+         <MenuButton layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Gegevens wijzigen">
+           <items>
+             <MenuItem mnemonicParsing="false" text="Gebruikersnaam" />
+             <MenuItem mnemonicParsing="false" text="Wacthwoord" />
+               <MenuItem mnemonicParsing="false" text="Unspecified Action" />
+           </items>
+         </MenuButton>
         </children>
     </AnchorPane>
 </VBox>

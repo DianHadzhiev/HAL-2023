@@ -64,6 +64,7 @@ public class ChatBotApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("HAL-2023");
         this.primaryStage.setScene(loginScene);
         this.primaryStage.show();

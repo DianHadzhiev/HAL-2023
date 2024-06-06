@@ -27,7 +27,7 @@ public class LoginController {
 
     @FXML
     private void logIn() {
-        User user = new User();
+        User user = User.getInstance();
         if (user.getUsername().equals(this.usernameInput.getText())
                 && user.getPassword().equals(this.passwordInput.getText())) {
             this.app.switchToChatScene();

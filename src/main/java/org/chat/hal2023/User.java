@@ -18,7 +18,16 @@ public class User {
      */
     private String email = "email@domain.net";
 
-    public User() {
+    private static User instance;
+
+    private User() {
+    }
+
+    public static User getInstance() {
+        if( instance == null ) {
+            instance = new User();
+        }
+        return instance;
     }
 
     /**
@@ -52,7 +61,7 @@ public class User {
      * @return  true if the new email is put into the email field.
      *          false if the new email isn't put into the email field.
      */
-    public boolean setEmail(String email) {
+    public boolean checkNewEmail(String email) {
         if (email == null) {
             return false;
         }
@@ -62,4 +71,44 @@ public class User {
         }
         return false;
     }
+
+    public void setUsername(String text) {
+        this.username = text;
+    }
+
+    public void setPassword(String text) {
+        if (checkNewPassword(text)) {
+            this.password = text;
+        }
+    }
+
+    public void setEmail(String text) {
+        if (checkNewEmail(text)) {
+            this.email = text;
+        }
+    }
+
+    public boolean checkNewPassword(String password) {
+        if (password == null) {
+            return false;
+        }
+        if (password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")) {
+            this.password = password;
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkNewUsername(String username) {
+        if (username == null) {
+            return false;
+        }
+        if (username.matches("^[a-zA-Z0-9]+$")) {
+            this.username = username;
+            return true;
+        }
+        return false;
+    }
+
 }
+

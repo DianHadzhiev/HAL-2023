@@ -28,6 +28,8 @@ public class Session {
     @FXML
     private Tab tab;
 
+    private final User user = User.getInstance();
+
     private LanguageManager languageManager = new LanguageManager();
 
     private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
@@ -122,4 +124,18 @@ public class Session {
             e.printStackTrace();
         }
     }
+
+    public void changeUserName(ActionEvent event) {
+        user.setUsername(inputField.getText());
+    }
+
+    public void changeUserEmail(ActionEvent event) {
+        user.setEmail(inputField.getText());
+    }
+
+    public void changeUserPassword(ActionEvent event) {
+        user.setPassword(inputField.getText());
+    }
+
+
 }
