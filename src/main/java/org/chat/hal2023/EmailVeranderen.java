@@ -1,8 +1,12 @@
 package org.chat.hal2023;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class EmailVeranderen {
 
@@ -51,6 +55,11 @@ public class EmailVeranderen {
         }
 
     }
+
+
+
+
+
 
 
 

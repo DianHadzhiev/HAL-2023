@@ -45,9 +45,12 @@ public class ChatBotApp extends Application {
         FXMLLoader loginLoader = new FXMLLoader(
                 getClass().getResource("LoginScherm.fxml"));
 
-        Parent loginRoot = loginLoader.load();
-        Parent chatRoot = FXMLLoader.load(
+        FXMLLoader chatLoader = new FXMLLoader(
                 getClass().getResource("ChatBot.fxml"));
+
+        Parent loginRoot = loginLoader.load();
+        Parent chatRoot = chatLoader.load();
+
 
         this.loginScene = new Scene(loginRoot, APP_WIDTH, APP_HEIGHT);
         this.chatScene = new Scene(chatRoot, APP_WIDTH, APP_HEIGHT);

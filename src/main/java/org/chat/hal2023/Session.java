@@ -34,6 +34,7 @@ public class Session {
 
     private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
 
+
     /**
      * Setter for the {@link Session#tabPane tabPane} field.
      * @param tabPane TabPane object that needs to be set into the
@@ -135,6 +136,42 @@ public class Session {
 
     public void changeUserPassword(ActionEvent event) {
         user.setPassword(inputField.getText());
+    }
+
+    @FXML
+    public void setToEmail(ActionEvent event) {
+        FXMLLoader loader;
+        try {
+            loader = new FXMLLoader(getClass().getResource("EmailVeranderen.fxml"));
+            loader.setController(this);
+            loader.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void setToUsername(ActionEvent event) {
+        FXMLLoader loader;
+        try {
+            loader = new FXMLLoader(getClass().getResource("UsernameVeranderen.fxml"));
+            loader.setController(this);
+            loader.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @FXML
+    public void setToPassword(ActionEvent event) {
+        FXMLLoader loader;
+        try {
+            loader = new FXMLLoader(getClass().getResource("PasswordVeranderen.fxml"));
+            loader.setController(this);
+            loader.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
 

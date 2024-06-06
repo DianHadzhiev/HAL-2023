@@ -14,12 +14,12 @@
          <children>
             <TextField layoutX="200.0" layoutY="230.0" prefHeight="40.0" prefWidth="400.0" />
             <TextField layoutX="200.0" layoutY="300.0" prefHeight="40.0" prefWidth="400.0" />
-            <Text layoutX="200.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wat is uw nieuwe Gebruikersnaam" wrappingWidth="215.7366943359375">
+            <Text layoutX="200.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wat is uw nieuwe gebruikersnaam" wrappingWidth="215.7366943359375">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>
             </Text>
-            <Text layoutX="200.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Herhaal uw nieuwe Gebruikersnaam" wrappingWidth="215.7366943359375">
+            <Text layoutX="200.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Herhaal uw nieuwe gebruikersnaam" wrappingWidth="215.7366943359375">
                <font>
                   <Font name="Arial" size="12.0" />
                </font>

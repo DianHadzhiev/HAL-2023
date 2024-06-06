@@ -28,7 +28,7 @@
                     </Tab>
                 </tabs>
             </TabPane>
-         <MenuButton layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="160.0" text="Gegevens wijzigen">
+         <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Gegevens wijzigen">
            <items>
              <MenuItem mnemonicParsing="false" text="Gebruikersnaam" />
              <MenuItem mnemonicParsing="false" text="Wacthwoord" />
