@@ -30,9 +30,9 @@
             </TabPane>
          <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Gegevens wijzigen">
            <items>
-             <MenuItem mnemonicParsing="false" onAction="#changeUserName" text="Gebruikersnaam" />
-             <MenuItem mnemonicParsing="false" onAction="#changeUserPassword" text="Wacthwoord" />
-               <MenuItem mnemonicParsing="false" onAction="#changeUserEmail" text="E-Mail" />
+             <MenuItem mnemonicParsing="false" onAction="#setToUsername" text="Gebruikersnaam" />
+             <MenuItem mnemonicParsing="false" onAction="#setToPassword" text="Wacthwoord" />
+               <MenuItem mnemonicParsing="false" onAction="#setToEmail" text="E-Mail" />
            </items>
          </MenuButton>
         </children>

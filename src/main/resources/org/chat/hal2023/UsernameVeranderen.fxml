@@ -24,7 +24,7 @@
                   <Font name="Arial" size="12.0" />
                </font>
             </Text>
-            <Button layoutX="370.0" layoutY="350.0" mnemonicParsing="false" text="Bevestig" />
+            <Button layoutX="370.0" layoutY="350.0" mnemonicParsing="false" onAction="#setUsername" text="Bevestig" />
          </children>
       </Pane>
    </children>

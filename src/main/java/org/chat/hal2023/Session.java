@@ -3,6 +3,8 @@ package org.chat.hal2023;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -153,10 +155,12 @@ public class Session {
     @FXML
     public void setToUsername(ActionEvent event) {
         FXMLLoader loader;
+        Parent root = null;
         try {
             loader = new FXMLLoader(getClass().getResource("UsernameVeranderen.fxml"));
             loader.setController(this);
-            loader.load();
+            root = loader.load();
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
@@ -166,7 +170,7 @@ public class Session {
     public void setToPassword(ActionEvent event) {
         FXMLLoader loader;
         try {
-            loader = new FXMLLoader(getClass().getResource("PasswordVeranderen.fxml"));
+            loader = new FXMLLoader(getClass().getResource("WachtwoordVeranderen.fxml"));
             loader.setController(this);
             loader.load();
         } catch (IOException e) {
