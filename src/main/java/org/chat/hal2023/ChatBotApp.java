@@ -23,17 +23,24 @@ public class ChatBotApp extends Application {
     /**
      * The scene holding the login screen.
      */
-    private final Scene loginScene;
+    private Scene loginScene;
 
     /**
      * The scene holding the chat screen.
      */
-    private final Scene chatScene;
+    private Scene chatScene;
 
     /**
      * The primary stage for this application.
      */
     private Stage primaryStage;
+    /**
+     * Main controller for this application that is used to switch scenes
+     * in the application.
+     */
+    private MainSceneController mainSceneController;
+
+    UserDAO userDAO = new UserDAO();
 
     /**
      * Constructor that creates all the scenes need throughout the application.
@@ -42,21 +49,6 @@ public class ChatBotApp extends Application {
      */
     public ChatBotApp() throws IOException {
         super();
-        FXMLLoader loginLoader = new FXMLLoader(
-                getClass().getResource("LoginScherm.fxml"));
-
-        FXMLLoader chatLoader = new FXMLLoader(
-                getClass().getResource("ChatBot.fxml"));
-
-        Parent loginRoot = loginLoader.load();
-        Parent chatRoot = chatLoader.load();
-
-
-        this.loginScene = new Scene(loginRoot, APP_WIDTH, APP_HEIGHT);
-        this.chatScene = new Scene(chatRoot, APP_WIDTH, APP_HEIGHT);
-
-        LoginController loginController = loginLoader.getController();
-        loginController.setApp(this);
     }
 
     /**
@@ -65,19 +57,32 @@ public class ChatBotApp extends Application {
      *                     application.
      */
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("HAL-2023");
-        this.primaryStage.setScene(loginScene);
-        this.primaryStage.show();
-    }
 
-    /**
-     * Switch from the current scene to the chat scene.
-     */
-    public void switchToChatScene() {
-        this.primaryStage.setScene(this.chatScene);
+        mainSceneController = MainSceneController.getInstance();
+        mainSceneController.setStage(primaryStage);
+
+        FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("LoginScherm.fxml"));
+        Parent loginRoot = loginLoader.load();
+
+        FXMLLoader chatLoader = new FXMLLoader(getClass().getResource("ChatBot.fxml"));
+        Parent chatRoot = chatLoader.load();
+
+        loginScene = new Scene(loginRoot, APP_WIDTH, APP_HEIGHT);
+        chatScene = new Scene(chatRoot, APP_WIDTH, APP_HEIGHT);
+
+        Session chatController = chatLoader.getController();
+        chatController.setStage(primaryStage);
+
+        LoginController loginController = loginLoader.getController();
+        loginController.setMainController(mainSceneController);
+
+        primaryStage.setScene(loginScene);
+        primaryStage.show();
+
     }
 
     /**
@@ -87,4 +92,5 @@ public class ChatBotApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
 }

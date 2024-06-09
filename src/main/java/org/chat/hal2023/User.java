@@ -5,20 +5,22 @@ public class User {
     /**
      * String that holds the username of the user.
      */
-    private String username = "username";
+    private String username;
 
     /**
      * String that holds the password of the user.
      */
-    private String password = "password";
+    private String password;
 
     /**
      * String that holds the email of the user.
      * Must be in a proper email format.
      */
-    private String email = "email@domain.net";
+    private String email;
 
     private static User instance;
+
+    UserDAO userDAO = new UserDAO();
 
     private User() {
     }
@@ -72,22 +74,6 @@ public class User {
         return false;
     }
 
-    public void setUsername(String text) {
-        this.username = text;
-    }
-
-    public void setPassword(String text) {
-        if (checkNewPassword(text)) {
-            this.password = text;
-        }
-    }
-
-    public void setEmail(String text) {
-        if (checkNewEmail(text)) {
-            this.email = text;
-        }
-    }
-
     public boolean checkNewPassword(String password) {
         if (password == null) {
             return false;
@@ -103,11 +89,41 @@ public class User {
         if (username == null) {
             return false;
         }
-        if (username.matches("^[a-zA-Z0-9]+$")) {
-            this.username = username;
-            return true;
+        return username.matches("^[a-zA-Z0-9]+$");
+    }
+
+    public void setNewUsername(String text) {
+        if (checkNewUsername(text)) {
+            userDAO.updateUsername(username, text);
         }
-        return false;
+    }
+
+    public void setNewPassword(String text) {
+        if (checkNewPassword(text)) {
+            userDAO.updatePassword(password, text);
+        }
+    }
+
+    public void setNewEmail(String text) {
+        if (checkNewEmail(text)) {
+            userDAO.updateEmail(email, text);
+        }
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void saveUser(User user) {
+        userDAO.saveUser(user);
     }
 
 }

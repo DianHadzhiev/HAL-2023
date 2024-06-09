@@ -2,17 +2,14 @@ package org.chat.hal2023;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
-
-import java.io.IOException;
 
 public class EmailVeranderen {
 
     User user = User.getInstance();
 
-    private ChatBotApp app;
+    private MainSceneController mainSceneController = MainSceneController.getInstance();
 
     @FXML
     private TextField email;
@@ -38,13 +35,13 @@ public class EmailVeranderen {
             alert.showAndWait();
         }
         else if(email.getText().equals(confirmEmail.getText())) {
-            user.setEmail(email.getText());
+            user.setNewEmail(email.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Email veranderd");
             alert.setHeaderText("Uw email is succesvol veranderd");
             alert.setContentText("Email veranderd");
             alert.showAndWait();
-            app.switchToChatScene();
+            mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
         }
         else if(!email.getText().equals(confirmEmail.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

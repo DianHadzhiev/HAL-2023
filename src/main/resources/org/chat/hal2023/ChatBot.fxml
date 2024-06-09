@@ -7,13 +7,11 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.chat.hal2023.Session">
     <AnchorPane prefHeight="600.0" prefWidth="800.0">
         <children>
-         <Pane layoutX="454.0" prefHeight="200.0" prefWidth="346.0" />
             <TabPane fx:id="tabPane" layoutY="30.0" prefHeight="572.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
                 <tabs>
                     <Tab fx:id="addTab" closable="false" text="+">
@@ -21,20 +19,21 @@
                             <AnchorPane prefHeight="543.0" prefWidth="800.0">
                                 <children>
                                     <TextField fx:id="addTabNameField" layoutX="323.0" layoutY="260.0" promptText="gespreks naam" /> <!-- Voeg deze regel toe -->
-                                    <Button layoutX="385.0" layoutY="295.0" onAction="#addNewTab" text="+" />
+                                    <Button layoutX="385.0" layoutY="295.0" onAction="#addNewTab" style="-fx-background-color: #b8b8b8;" text="+" />
                                 </children>
                             </AnchorPane>
                         </content>
                     </Tab>
                 </tabs>
             </TabPane>
-         <MenuButton layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" text="Gegevens wijzigen">
+         <MenuButton layoutX="2.0" layoutY="2.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="130.0" style="-fx-background-color: #b8b8b8;" text="Gegevens wijzigen">
            <items>
              <MenuItem mnemonicParsing="false" onAction="#setToUsername" text="Gebruikersnaam" />
              <MenuItem mnemonicParsing="false" onAction="#setToPassword" text="Wacthwoord" />
                <MenuItem mnemonicParsing="false" onAction="#setToEmail" text="E-Mail" />
            </items>
          </MenuButton>
+         <Button layoutX="135.0" layoutY="2.0" mnemonicParsing="false" onAction="#setToLogout" style="-fx-background-color: #b8b8b8;" text="Uitloggen" />
         </children>
     </AnchorPane>
 </VBox>

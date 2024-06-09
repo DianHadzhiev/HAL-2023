@@ -1,5 +1,6 @@
 package org.chat.hal2023;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -8,7 +9,7 @@ public class WachtwoordVeranderen {
 
     User user = User.getInstance();
 
-    private ChatBotApp app;
+    private MainSceneController mainSceneController = MainSceneController.getInstance();
 
     @FXML
     private TextField password;
@@ -22,7 +23,10 @@ public class WachtwoordVeranderen {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
-            alert.setContentText("Vul een correcte password in");
+            alert.setContentText("Eisen van het wachtwoord:" +
+                    "\n - Minstens 8 tekens" +
+                    "\n - Minstens 1 hoofdletter" +
+                    "\n - Minstens 1 cijfer");
             alert.showAndWait();
         } else if (password.getText().isEmpty() || confirmPassword.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -31,13 +35,13 @@ public class WachtwoordVeranderen {
             alert.setContentText("Vul alle velden in");
             alert.showAndWait();
         } else if (password.getText().equals(confirmPassword.getText())) {
-            user.setPassword(password.getText());
+            user.setNewPassword(password.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Password veranderd");
             alert.setHeaderText("Uw password is succesvol veranderd");
             alert.setContentText("Password veranderd");
             alert.showAndWait();
-            app.switchToChatScene();
+            mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
         } else if (!password.getText().equals(confirmPassword.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -46,4 +50,5 @@ public class WachtwoordVeranderen {
             alert.showAndWait();
         }
     }
+
 }

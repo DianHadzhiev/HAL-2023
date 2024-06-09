@@ -9,7 +9,7 @@
     <children>
         <ListView fx:id="chatListView" layoutX="50.0" layoutY="14.0" prefHeight="470.0" prefWidth="700.0" />
         <TextField fx:id="inputField" layoutX="150.0" layoutY="492.0" prefHeight="30.0" prefWidth="500.0" promptText="Type a message..." />
-        <Button defaultButton="true" layoutX="589.0" layoutY="495.0" onAction="#sendMessage" text="Verstuur" />
-        <Button layoutX="703.0" layoutY="495.0" onAction="#deleteTab" text="Verwijder" />
+        <Button defaultButton="true" layoutX="583.0" layoutY="495.0" onAction="#sendMessage" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #1877F2;" text="Verstuur" textFill="WHITE" />
+        <Button layoutX="703.0" layoutY="495.0" onAction="#deleteTab" style="-fx-background-color: #b8b8b8;" text="Verwijder" />
     </children>
 </AnchorPane>

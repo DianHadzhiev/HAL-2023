@@ -3,13 +3,12 @@ package org.chat.hal2023;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -36,6 +35,20 @@ public class Session {
 
     private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
 
+    private Stage stage;
+
+    private MainSceneController mainSceneController = MainSceneController.getInstance();
+
+
+
+    /**
+     * Setter for the {@link Session#stage stage} field.
+     * @param stage Stage object that needs to be set into the
+     *              {@link Session#stage stage} field
+     */
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     /**
      * Setter for the {@link Session#tabPane tabPane} field.
@@ -128,54 +141,24 @@ public class Session {
         }
     }
 
-    public void changeUserName(ActionEvent event) {
-        user.setUsername(inputField.getText());
-    }
-
-    public void changeUserEmail(ActionEvent event) {
-        user.setEmail(inputField.getText());
-    }
-
-    public void changeUserPassword(ActionEvent event) {
-        user.setPassword(inputField.getText());
-    }
-
     @FXML
     public void setToEmail(ActionEvent event) {
-        FXMLLoader loader;
-        try {
-            loader = new FXMLLoader(getClass().getResource("EmailVeranderen.fxml"));
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        mainSceneController.switchToScene(event, "EmailVeranderen.fxml");
     }
 
     @FXML
     public void setToUsername(ActionEvent event) {
-        FXMLLoader loader;
-        Parent root = null;
-        try {
-            loader = new FXMLLoader(getClass().getResource("UsernameVeranderen.fxml"));
-            loader.setController(this);
-            root = loader.load();
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        mainSceneController.switchToScene(event, "GebruikersnaamVeranderen.fxml");
     }
 
     @FXML
     public void setToPassword(ActionEvent event) {
-        FXMLLoader loader;
-        try {
-            loader = new FXMLLoader(getClass().getResource("WachtwoordVeranderen.fxml"));
-            loader.setController(this);
-            loader.load();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+        mainSceneController.switchToScene(event, "WachtwoordVeranderen.fxml");
+    }
+
+    @FXML
+    public void setToLogout(ActionEvent event) {
+        mainSceneController.switchToScene(event, "LoginScherm.fxml");
     }
 
 

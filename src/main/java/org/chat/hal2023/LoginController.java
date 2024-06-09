@@ -1,8 +1,12 @@
 package org.chat.hal2023;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+
+import java.io.IOException;
 
 public class LoginController {
 
@@ -21,24 +25,44 @@ public class LoginController {
     private PasswordField passwordInput;
 
     /**
-     * The variable that allows this object to refer back to the application.
+     * The variable that allows this object to refer back to the mainController.
      */
-    private ChatBotApp app;
+    private MainSceneController mainSceneController;
+
+    private final UserDAO userDAO = new UserDAO();
 
     @FXML
     private void logIn() {
-        User user = User.getInstance();
-        if (user.getUsername().equals(this.usernameInput.getText())
-                && user.getPassword().equals(this.passwordInput.getText())) {
-            this.app.switchToChatScene();
+        String username = usernameInput.getText();
+        String password = passwordInput.getText();
+
+        if (userDAO.validateUser(username, password)) {
+            User user = User.getInstance();
+            user.setUsername(username);
+            user.setPassword(password);
+
+            mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setHeaderText("Probeer opnieuw");
+            alert.setContentText("Vul een correcte username en password in");
+            alert.showAndWait();
         }
     }
 
     /**
-     * Set the app of this LoginController.
-     * @param app the app to be added to this LoginController
+     * Set the mainController of this LoginController.
+     * @param mainSceneController scene controller of the application
      */
-    public void setApp(ChatBotApp app) {
-        this.app = app;
+    public void setMainController(MainSceneController mainSceneController) {
+        this.mainSceneController = mainSceneController;
     }
+
+    @FXML
+    private void switchToRegister() throws IOException {
+        mainSceneController.switchToScene(new ActionEvent(), "Registreren.fxml");
+    }
+
+
 }
