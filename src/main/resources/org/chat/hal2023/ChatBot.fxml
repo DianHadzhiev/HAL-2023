@@ -21,7 +21,7 @@
                                     <TextField fx:id="inputField" layoutX="150.0" layoutY="520.0" prefHeight="30.0" prefWidth="500.0" promptText="Schrijf een prompt" />
                                     <Button defaultButton="true" layoutX="585.0" layoutY="522.0" onAction="#sendMessage" text="Verstuur" />
                                     <Button layoutX="710.0" layoutY="520.0" onAction="#deleteTab" text="Verwijder" />
-                                    <Button layoutX="73.0" layoutY="520.0" mnemonicParsing="false" text="Chat Taal" />
+                                    <Button layoutX="73.0" layoutY="520.0" onAction="#changeLanguage" mnemonicParsing="false" text="Chat Taal" />
                                 </children>
                             </AnchorPane>
                         </content>

@@ -122,4 +122,9 @@ public class Session {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void changeLanguage(ActionEvent event) {
+        this.languageManager.changeLanguageStrategy();
+    }
 }
