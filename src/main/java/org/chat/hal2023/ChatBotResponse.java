@@ -65,7 +65,7 @@ public class ChatBotResponse implements LanguageListener {
      * Changes this objects own language strategy to the one of the
      * LanguageContext. Afterward, requests the JSONStream to be updated
      * according to the new strategy.
-     * @param languageContext
+     * @param languageContext The new LanguageContext
      */
     @Override
     public void updateLanguage(LanguageContext languageContext) {
@@ -73,7 +73,7 @@ public class ChatBotResponse implements LanguageListener {
         this.updateJSONStream(languageStrategy.getResponseFile());
     }
 
-    private void updateJSONStream(String fileName) {
+    public void updateJSONStream(String fileName) {
         try {
             InputStream inputStream = getClass().getResourceAsStream(fileName);
             JsonElement jsonElement = JsonParser.parseReader(

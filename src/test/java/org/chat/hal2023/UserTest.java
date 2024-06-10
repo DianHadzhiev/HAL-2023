@@ -69,23 +69,36 @@ public class UserTest {
         assertFalse(user.checkNewPassword(null));
     }
 
-    // Equivalence Classes and Boundary Values for Email Validation
+    // Equivalence Classes en randvoowarden
     @Test
     public void testCheckNewEmailEquivalenceAndBoundary() {
-        // Equivalence Class: Valid email
+        // Equivalence Class: each email that contains a String + "@" + adress site + "."  + domain
         assertTrue(user.checkNewEmail("test@example.com"));
 
         // Equivalence Class: Invalid email (missing '@')
         assertFalse(user.checkNewEmail("test.example.com"));
 
-        // Boundary Value: Invalid email (just '@')
-        assertFalse(user.checkNewEmail("@"));
-
-        // Boundary Value: Valid email (minimum valid length)
-        assertTrue(user.checkNewEmail("a@b.co"));
-
         // Equivalence Class: Invalid email (null)
         assertFalse(user.checkNewEmail(null));
+
+        // randvoowarden: Invalid email (just '@')
+        assertFalse(user.checkNewEmail("@"));
+
+        // randvoowarden: Valid email (minimum valid length)
+        assertTrue(user.checkNewEmail("a@b.co"));
+
+        // randvoowarden: no domain
+        assertFalse(user.checkNewEmail("a@b"));
+
+        // randvoowarden: no site
+        assertFalse(user.checkNewEmail("a@.com"));
+
+        // randvoowarden: no String
+        assertFalse(user.checkNewEmail("@com"));
+
+        // randvoowarden: no adress
+        assertFalse(user.checkNewEmail("@.com"));
+
     }
 
     // Decision, Condition, and Multiple Condition Coverage for Setting Methods
@@ -121,4 +134,6 @@ public class UserTest {
         assertNotEquals("invalid-email", user.getEmail());
         verify(mockUserDAO, times(0)).updateEmail(user.getEmail(), "invalid-email");
     }
+
+
 }
