@@ -21,16 +21,6 @@ public class ChatBotApp extends Application {
     private static final int APP_WIDTH = 800;
 
     /**
-     * The scene holding the login screen.
-     */
-    private Scene loginScene;
-
-    /**
-     * The scene holding the chat screen.
-     */
-    private Scene chatScene;
-
-    /**
      * The primary stage for this application.
      */
     private Stage primaryStage;
@@ -40,7 +30,6 @@ public class ChatBotApp extends Application {
      */
     private MainSceneController mainSceneController;
 
-    UserDAO userDAO = new UserDAO();
 
     /**
      * Constructor that creates all the scenes need throughout the application.
@@ -62,6 +51,8 @@ public class ChatBotApp extends Application {
         this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("HAL-2023");
 
+        Scene loginScene;
+
         mainSceneController = MainSceneController.getInstance();
         mainSceneController.setStage(primaryStage);
 
@@ -72,7 +63,6 @@ public class ChatBotApp extends Application {
         Parent chatRoot = chatLoader.load();
 
         loginScene = new Scene(loginRoot, APP_WIDTH, APP_HEIGHT);
-        chatScene = new Scene(chatRoot, APP_WIDTH, APP_HEIGHT);
 
         Session chatController = chatLoader.getController();
         chatController.setStage(primaryStage);
