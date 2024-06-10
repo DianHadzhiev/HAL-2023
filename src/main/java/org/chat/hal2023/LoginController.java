@@ -27,7 +27,7 @@ public class LoginController {
     /**
      * The variable that allows this object to refer back to the mainController.
      */
-    private MainSceneController mainSceneController;
+    private MainSceneController mainSceneController = MainSceneController.getInstance();
 
     private final UserDAO userDAO = new UserDAO();
 
