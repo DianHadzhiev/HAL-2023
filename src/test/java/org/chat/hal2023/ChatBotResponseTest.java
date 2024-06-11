@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.*;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -25,10 +24,11 @@ public class ChatBotResponseTest {
         mockLanguageStrategy = mock(LanguageStrategy.class);
         mockLanguageContext = mock(LanguageContext.class);
 
-        when(mockLanguageStrategy.getResponseFile()).thenReturn("/test_responses.json");
+        when(mockLanguageStrategy.getResponseFile()).thenReturn("responsesForTest.JSON");
         when(mockLanguageContext.getStrategy()).thenReturn(mockLanguageStrategy);
 
-        chatBotResponse = new ChatBotResponse(mockLanguageManager);
+        chatBotResponse = ChatBotResponse.getInstance(mockLanguageManager);
+        chatBotResponse.updateLanguage(mockLanguageContext);
     }
 
     @Test
@@ -76,6 +76,5 @@ public class ChatBotResponseTest {
         verify(mockLanguageStrategy).getResponseFile();
         assertNotNull(chatBotResponse);
     }
-
 
 }

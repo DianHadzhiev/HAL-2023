@@ -4,6 +4,7 @@ module org.chat.hal {
     requires com.google.gson;
     requires jdk.compiler;
     requires java.sql;
+    requires java.desktop;
 
 
     opens org.chat.hal2023 to javafx.fxml;
