@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 public class ChangePassword {
 
-    User user = User.getInstance();
+    private final User user = User.getInstance();
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
 
@@ -23,10 +23,10 @@ public class ChangePassword {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
-            alert.setContentText("Eisen van het wachtwoord:" +
-                    "\n - Minstens 8 tekens" +
-                    "\n - Minstens 1 hoofdletter" +
-                    "\n - Minstens 1 cijfer");
+            alert.setContentText("Eisen van het wachtwoord:"
+                    + "\n - Minstens 8 tekens"
+                    + "\n - Minstens 1 hoofdletter"
+                    + "\n - Minstens 1 cijfer");
             alert.showAndWait();
         } else if (password.getText().isEmpty() || confirmPassword.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

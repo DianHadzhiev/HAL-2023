@@ -7,9 +7,9 @@ import javafx.scene.control.TextField;
 
 public class ChangeEmail {
 
-    User user = User.getInstance();
+    private final User user = User.getInstance();
 
-    private MainSceneController mainSceneController = MainSceneController.getInstance();
+    private final MainSceneController mainSceneController = MainSceneController.getInstance();
 
     @FXML
     private TextField email;
@@ -19,21 +19,19 @@ public class ChangeEmail {
 
     @FXML
     public void setEmail() {
-        if(!user.checkNewEmail(email.getText())) {
+        if (!user.checkNewEmail(email.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte email in");
             alert.showAndWait();
-        }
-        else if(email.getText().isEmpty() || confirmEmail.getText().isEmpty()) {
+        } else if (email.getText().isEmpty() || confirmEmail.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul alle velden in");
             alert.showAndWait();
-        }
-        else if(email.getText().equals(confirmEmail.getText())) {
+        } else if (email.getText().equals(confirmEmail.getText())) {
             user.setNewEmail(email.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Email veranderd");
@@ -41,8 +39,7 @@ public class ChangeEmail {
             alert.setContentText("Email veranderd");
             alert.showAndWait();
             mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
-        }
-        else if(!email.getText().equals(confirmEmail.getText())) {
+        } else if (!email.getText().equals(confirmEmail.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");

@@ -41,7 +41,7 @@ public class ChatBotResponse implements LanguageListener {
     }
 
     public static ChatBotResponse getInstance(LanguageManager languageManager) {
-        if(instance == null) {
+        if (instance == null) {
             instance = new ChatBotResponse(languageManager);
         }
         return instance;
