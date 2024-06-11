@@ -22,7 +22,7 @@ public class Register {
     private final User user = User.getInstance();
 
     @FXML
-    public void registreren() {
+    public boolean registreren() {
 
         if (!checkUsername()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -30,19 +30,20 @@ public class Register {
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte username in");
             alert.showAndWait();
+
         } else if (!checkEmail()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte email in");
             alert.showAndWait();
-        } else if (checkIfAllFieldsAreFilled()) {
+        } else if (!checkForMissingField()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul alle velden in");
             alert.showAndWait();
-        } else if (validUser(user)) {
+        } else if (validUser()) {
             user.setUsername(username.getText());
             user.setEmail(email.getText());
             user.setPassword(password.getText());
@@ -53,6 +54,7 @@ public class Register {
             alert.setContentText("Registratie succesvol");
             alert.showAndWait();
             switchToLogin();
+            return true;
         }else if (!checkPassword()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -66,6 +68,7 @@ public class Register {
             alert.setContentText("Passwords zijn niet gelijk!");
             alert.showAndWait();
         }
+        return false;
     }
 
     /*
@@ -77,8 +80,8 @@ public class Register {
      * check if new user credentials are valid
      * @return boolean true if all fields are filled and in correct format else false
      */
-    public boolean validUser(User user) {
-        return user.checkNewUsername(username.getText()) && user.checkNewEmail(email.getText()) && user.checkNewPassword(password.getText()) && checkConfirmPassword();
+    public boolean validUser() {
+        return checkUsername() && checkEmail() && checkPassword() && checkConfirmPassword();
     }
 
     /**
@@ -115,9 +118,9 @@ public class Register {
 
     /**
      * checks if all fields are filled
-     * @return boolean false if some field is empty
+     * @return boolean true if some field is empty
      */
-    public boolean checkIfAllFieldsAreFilled(){
+    public boolean checkForMissingField(){
         return username.getText().isEmpty() || email.getText().isEmpty() || password.getText().isEmpty() || confirmPassword.getText().isEmpty();
     }
 
@@ -125,14 +128,6 @@ public class Register {
     public void switchToLogin() {
         MainSceneController mainSceneController = MainSceneController.getInstance();
         mainSceneController.switchToScene(new ActionEvent(), "LoginScherm.fxml");
-    }
-
-    /**
-     * made just for testing
-     * @param confirmPassword
-     */
-    public void setConfirmPassword(TextField confirmPassword) {
-        this.confirmPassword = confirmPassword;
     }
 
 }

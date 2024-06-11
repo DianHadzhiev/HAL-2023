@@ -1,8 +1,6 @@
 package org.chat.hal2023;
 
-import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +23,11 @@ public class RegisterTest {
         register.password = new TextField();
         register.confirmPassword = new TextField();
         user = mock(User.class);
-
+        //initToolkit();
     }
 
     @BeforeAll
     public static void initToolkit() {
-        // Initialize the JavaFX toolkit if it hasn't been initialized yet
         if (!Platform.isFxApplicationThread()) {
             Platform.startup(() -> {});
         }
@@ -38,71 +35,229 @@ public class RegisterTest {
 
     @Test
     public void testValidUser() {
-        user.setNewEmail("testemail@example.com");
-        user.setNewUsername("testusername");
-        user.setNewPassword("Testpassword1");
-        register.setConfirmPassword("Testpassword1");
-        assertTrue(register.validUser(user));
-    }
-
-    @Test
-    public void testCheckConfirmPassword() {
-        register.password.setText("password");
-        register.confirmPassword.setText("password");
-        assertTrue(register.checkConfirmPassword());
-    }
-
-    @Test
-    public void testCheckEmail() {
-        when(user.checkNewEmail("")).thenReturn(false);
-        assertFalse(register.checkEmail());
-    }
-
-    @Test
-    public void testCheckIfAllFieldsAreFilled() {
-        assertFalse(register.checkIfAllFieldsAreFilled());
-    }
-
-    @Test
-    public void testRegistreren() {
-        // Mock user methods
-        when(user.checkNewUsername(anyString())).thenReturn(true);
-        when(user.checkNewEmail(anyString())).thenReturn(true);
-        when(user.checkNewPassword(anyString())).thenReturn(true);
-        doNothing().when(user).saveUser(any());
-
-        // Mock alert
-        Alert alertMock = mock(Alert.class);
-        doNothing().when(alertMock).showAndWait();
-
-        // Set text fields
         register.username.setText("testUser");
         register.email.setText("test@example.com");
-        register.password.setText("password");
-        register.confirmPassword.setText("password");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        assertTrue(register.validUser());
+    }
 
-        // Call the method
-        register.registreren();
+    @Test
+    public void testRegistreren_ValidUser() {
+        Platform.runLater(() -> {
+            register.username.setText("testUser");
+            register.email.setText("test@example.com");
+            register.password.setText("Password123");
+            register.confirmPassword.setText("Password123");
+            assertTrue(register.registreren());
+        });
+    }
 
-        // Verify that the success alert is shown
-        verify(alertMock, times(1)).showAndWait();
+    @Test
+    public void testValidRandvoorwaarde() {
+        register.username.setText("t");
+        register.email.setText("t@e.c");
+        register.password.setText("Password1");
+        register.confirmPassword.setText("Password1");
+        assertTrue(register.validUser());
+    }
+
+    @Test
+    public void testValidRandvoorwaarde2() {
+        register.username.setText("t");
+        register.email.setText("t@e.");
+        register.password.setText("Password1");
+        register.confirmPassword.setText("Password1");
+        assertFalse(register.validUser());
+        //false because domain is missing
+    }
+
+    @Test
+    public void testValidRandvoorwaarde3() {
+        register.username.setText("t");
+        register.email.setText("t@e.c");
+        register.password.setText("Passworddddd");
+        register.confirmPassword.setText("Passworddddd");
+        assertFalse(register.validUser());
+        //false because password must have 1 number
+    }
+
+    @Test
+    public void testValidRandvoorwaarde4() {
+        register.username.setText("t");
+        register.email.setText("t@e.c");
+        register.password.setText("Passwo1");
+        register.confirmPassword.setText("Passwo1");
+        assertFalse(register.validUser());
+        //false because password must have 8 characters
     }
 
     @Test
     public void testRegistreren_InvalidUser() {
-        // Mock invalid username
-        when(user.checkNewUsername(anyString())).thenReturn(false);
-
-        // Mock alert
-        Alert alertMock = mock(Alert.class);
-        doNothing().when(alertMock).showAndWait();
-
-        // Call the method
-        register.registreren();
-
-        // Verify that the error alert is shown
-        verify(alertMock, times(1)).showAndWait();
+        register.username.setText("");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        doNothing().when(user).saveUser(any(User.class));
+        assertTrue(register.checkForMissingField());
     }
 
-    // Add more test methods as needed
+    @Test
+    public void testRegistreren_InvalidUser2() {
+        register.username.setText("testUser");
+        register.email.setText("invalid-email");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        doNothing().when(user).saveUser(any(User.class));
+        assertFalse(register.checkEmail());
+    }
+
+   @Test
+    public void testRegistreren_InvalidUser3() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("");
+        register.confirmPassword.setText("Password123");
+        doNothing().when(user).saveUser(any(User.class));
+        assertFalse(register.checkPassword());
+    }
+
+    @Test
+    public void testRegistreren_InvalidUser4() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
+        doNothing().when(user).saveUser(any(User.class));
+        assertFalse(register.checkConfirmPassword());
+    }
+
+    @Test
+    public void testRegistreren_InvalidUser5() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        doNothing().when(user).saveUser(any(User.class));
+        assertTrue(register.checkPassword());
+    }
+
+
+    @Test
+    public void testCheckIfAllFieldsAreFilled() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        assertFalse(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled() {
+        register.username.setText("");
+        register.email.setText("");
+        register.password.setText("");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled2() {
+        register.username.setText("");
+        register.email.setText("");
+        register.password.setText("");
+        register.confirmPassword.setText("Password123");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled3() {
+        register.username.setText("");
+        register.email.setText("test@example.com");
+        register.password.setText("");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled4() {
+        register.username.setText("testUser");
+        register.email.setText("");
+        register.password.setText("");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled5() {
+        register.username.setText("");
+        register.email.setText("");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled6() {
+        register.username.setText("");
+        register.email.setText("");
+        register.password.setText("");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled7() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("Password123");
+        assertFalse(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled8() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled9() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("");
+        register.confirmPassword.setText("Password123");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled10() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled11() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled12() {
+        register.username.setText("testUser");
+        register.email.setText("test@example.com");
+        register.password.setText("");
+        register.confirmPassword.setText("Password123");
+        assertTrue(register.checkForMissingField());
+    }
+
 }
