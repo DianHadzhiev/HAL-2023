@@ -1,23 +1,22 @@
 [
   {
     "keyword": "java",
-    "response": "Java is a high-level, class-based, object-oriented programming language that is designed to have as few implementation dependencies as possible."
+    "response": "Java is een high-level, class-based, object-oriented programming language die is ontworpen om zo min mogelijk implementatie afhankelijkheden te hebben."
   },
   {
     "keyword": "json",
-    "response": "JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate."
+    "response": "JSON (JavaScript Object Notation) is een lichtgewitch data-uitwissel format dat makkelijk te lezen en schrijven voor mensen, en makkelijk voor machines om te verwerken en genereren."
   },
   {
     "keyword": "chatbot",
-    "response": "A chatbot is a software application used to conduct an online chat conversation via text or text-to-speech, instead of providing direct contact with a live human agent."
+    "response": "Een chatbot is een software applicatie die gebruikt word om een online chat conversatie via tekst of text-to-speech te voeren, in plaats van direct contact me een levend persoon."
   },
   {
     "keyword": "javafx",
-    "response": "JavaFX is a software platform for creating and delivering desktop applications, as well as rich internet applications (RIAs) that can run across a wide variety of devices."
+    "response": "JavaFX is een software platform voor het making en bezorgen van desktop applicaties, zowel als rijke internet applicaties (RIAs) die over veel verschillende apparaten kunnen draaien."
   },
   {
     "keyword": "gson",
-    "response": "Gson is a Java library that can be used to convert Java Objects into their JSON representation. It can also be used to convert a JSON string to an equivalent Java object."
+    "response": "Gson is een Java Library die gebruikt kan worden om Java Objecten om te zetten naar hun JSON representatie. Het kan ook gebruikt worden om een JSON string om te zetten naar zijn equivalente Java object."
   }
-
 ]

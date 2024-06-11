@@ -61,7 +61,7 @@ public class LoginController {
 
     @FXML
     private void switchToRegister() throws IOException {
-        mainSceneController.switchToScene(new ActionEvent(), "Registreren.fxml");
+        mainSceneController.switchToScene(new ActionEvent(), "Register.fxml");
     }
 
 

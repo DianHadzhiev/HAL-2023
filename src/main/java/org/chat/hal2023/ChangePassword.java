@@ -5,51 +5,50 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 
-public class UsernameVeranderen {
+public class ChangePassword {
 
     User user = User.getInstance();
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
 
-
+    @FXML
+    private TextField password;
 
     @FXML
-    private TextField username;
+    private TextField confirmPassword;
 
     @FXML
-    private TextField confirmUsername;
-
-    @FXML
-    public void setUsername()  {
-
-        if (!user.checkNewUsername(username.getText()))  {
+    public void setPassword() {
+        if (!user.checkNewPassword(password.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
-            alert.setContentText("Vul een correcte username in");
+            alert.setContentText("Eisen van het wachtwoord:" +
+                    "\n - Minstens 8 tekens" +
+                    "\n - Minstens 1 hoofdletter" +
+                    "\n - Minstens 1 cijfer");
             alert.showAndWait();
-        } else if (username.getText().isEmpty() || confirmUsername.getText().isEmpty()) {
+        } else if (password.getText().isEmpty() || confirmPassword.getText().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul alle velden in");
             alert.showAndWait();
-        } else if (username.getText().equals(confirmUsername.getText())) {
-            user.setNewUsername(username.getText());
+        } else if (password.getText().equals(confirmPassword.getText())) {
+            user.setNewPassword(password.getText());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Username veranderd");
-            alert.setHeaderText("Uw username is succesvol veranderd");
-            alert.setContentText("Username veranderd");
+            alert.setTitle("Password veranderd");
+            alert.setHeaderText("Uw password is succesvol veranderd");
+            alert.setContentText("Password veranderd");
             alert.showAndWait();
             mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
-        } else if (!username.getText().equals(confirmUsername.getText())) {
+        } else if (!password.getText().equals(confirmPassword.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
-            alert.setContentText("Usernames zijn niet gelijk!");
+            alert.setContentText("Passwords zijn niet gelijk!");
             alert.showAndWait();
         }
-
     }
 
 }
