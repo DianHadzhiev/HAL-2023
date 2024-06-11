@@ -11,8 +11,6 @@ public class ChangeUsername {
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
 
-
-
     @FXML
     private TextField username;
 
@@ -49,7 +47,6 @@ public class ChangeUsername {
             alert.setContentText("Usernames zijn niet gelijk!");
             alert.showAndWait();
         }
-
     }
 
 }

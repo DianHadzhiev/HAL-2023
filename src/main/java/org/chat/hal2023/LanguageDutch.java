@@ -16,4 +16,5 @@ public class LanguageDutch implements LanguageStrategy {
     public String getResponseFile() {
         return this.responseFile;
     }
+
 }

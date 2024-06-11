@@ -64,5 +64,4 @@ public class LoginController {
         mainSceneController.switchToScene(new ActionEvent(), "Register.fxml");
     }
 
-
 }

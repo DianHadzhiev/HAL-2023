@@ -39,8 +39,6 @@ public class Session {
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
 
-
-
     /**
      * Setter for the {@link Session#stage stage} field.
      * @param stage Stage object that needs to be set into the

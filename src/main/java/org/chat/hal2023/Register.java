@@ -9,14 +9,17 @@ public class Register {
 
     @FXML
     private TextField username;
+
     @FXML
     private TextField email;
+
     @FXML
     private TextField password;
+
     @FXML
     private TextField confirmPassword;
-    User user = User.getInstance();
 
+    private final User user = User.getInstance();
 
     @FXML
     public void registreren() {
@@ -58,8 +61,6 @@ public class Register {
             alert.setContentText("Passwords zijn niet gelijk!");
             alert.showAndWait();
         }
-
     }
-
 
 }

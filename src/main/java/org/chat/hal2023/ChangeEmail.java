@@ -19,7 +19,6 @@ public class ChangeEmail {
 
     @FXML
     public void setEmail() {
-
         if(!user.checkNewEmail(email.getText())) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -50,14 +49,6 @@ public class ChangeEmail {
             alert.setContentText("Emails zijn niet gelijk!");
             alert.showAndWait();
         }
-
     }
-
-
-
-
-
-
-
 
 }

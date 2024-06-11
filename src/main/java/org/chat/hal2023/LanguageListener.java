@@ -8,4 +8,5 @@ public interface LanguageListener {
      *                        currently used
      */
     void updateLanguage(LanguageContext languageContext);
+
 }
