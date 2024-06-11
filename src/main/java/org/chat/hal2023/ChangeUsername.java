@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 public class ChangeUsername {
 
-    private final User user = User.getInstance();
+    private User user = User.getInstance();
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
 

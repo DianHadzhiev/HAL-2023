@@ -86,22 +86,22 @@ public class User {
 
     public void setNewUsername(String text) {
         if (checkNewUsername(text)) {
-            this.username = text;
+            System.out.println(username);
             userDAO.updateUsername(username, text);
         }
     }
 
     public void setNewPassword(String text) {
         if (checkNewPassword(text)) {
-            this.password = text;
-            userDAO.updatePassword(password, text);
+            System.out.println(password);
+            System.out.println(text);
+            userDAO.updatePassword(this.username, text);
         }
     }
 
     public void setNewEmail(String text) {
         if (checkNewEmail(text)) {
-            this.email = text;
-            userDAO.updateEmail(email, text);
+            userDAO.updateEmail(this.username, text);
         }
     }
 

@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 
 public class ChangeEmail {
 
-    private final User user = User.getInstance();
+    private User user = User.getInstance();
 
     private final MainSceneController mainSceneController = MainSceneController.getInstance();
 
