@@ -8,4 +8,5 @@ public interface LanguageStrategy {
      * @return file name
      */
     String getResponseFile();
+
 }

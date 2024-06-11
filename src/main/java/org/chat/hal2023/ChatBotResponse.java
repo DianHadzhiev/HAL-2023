@@ -26,16 +26,25 @@ public class ChatBotResponse implements LanguageListener {
      */
     private LanguageStrategy languageStrategy;
 
+    private static ChatBotResponse instance;
+
     /**
      * Constructor. Makes sure that when this object is made the language is
      * ready to be used.
      * @param languageManager Object that keeps track of the language that is
      *                        used
      */
-    public ChatBotResponse(LanguageManager languageManager) {
+    private ChatBotResponse(LanguageManager languageManager) {
         this.languageManager = languageManager;
         this.languageManager.subscribe(this);
         this.updateJSONStream(this.languageStrategy.getResponseFile());
+    }
+
+    public static ChatBotResponse getInstance(LanguageManager languageManager) {
+        if (instance == null) {
+            instance = new ChatBotResponse(languageManager);
+        }
+        return instance;
     }
 
     /**
@@ -47,7 +56,7 @@ public class ChatBotResponse implements LanguageListener {
     public String getResponse(String message) {
         String[] messageWords = message.toLowerCase().split("\\s+");
 
-        for (JsonElement element : documentation) {
+        for (JsonElement element : this.documentation) {
             JsonObject doc = element.getAsJsonObject();
             String keyword = doc.get("keyword").getAsString().toLowerCase();
 
@@ -70,7 +79,7 @@ public class ChatBotResponse implements LanguageListener {
     @Override
     public void updateLanguage(LanguageContext languageContext) {
         this.languageStrategy = languageContext.getStrategy();
-        this.updateJSONStream(languageStrategy.getResponseFile());
+        this.updateJSONStream(this.languageStrategy.getResponseFile());
     }
 
     public void updateJSONStream(String fileName) {
@@ -79,11 +88,12 @@ public class ChatBotResponse implements LanguageListener {
             JsonElement jsonElement = JsonParser.parseReader(
                     new InputStreamReader(inputStream));
 
-            documentation = jsonElement.getAsJsonArray();
+            this.documentation = jsonElement.getAsJsonArray();
 
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

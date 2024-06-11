@@ -31,15 +31,13 @@ public class Session {
 
     private final User user = User.getInstance();
 
-    private LanguageManager languageManager = new LanguageManager();
+    private LanguageManager languageManager = LanguageManager.getInstance();
 
-    private ChatBotResponse chatBot = new ChatBotResponse(languageManager);
+    private ChatBotResponse chatBot = ChatBotResponse.getInstance(languageManager);
 
     private Stage stage;
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
-
-
 
     /**
      * Setter for the {@link Session#stage stage} field.
@@ -143,17 +141,17 @@ public class Session {
 
     @FXML
     public void setToEmail(ActionEvent event) {
-        mainSceneController.switchToScene(event, "EmailVeranderen.fxml");
+        mainSceneController.switchToScene(event, "ChangeEmail.fxml");
     }
 
     @FXML
     public void setToUsername(ActionEvent event) {
-        mainSceneController.switchToScene(event, "GebruikersnaamVeranderen.fxml");
+        mainSceneController.switchToScene(event, "ChangeUsername.fxml");
     }
 
     @FXML
     public void setToPassword(ActionEvent event) {
-        mainSceneController.switchToScene(event, "WachtwoordVeranderen.fxml");
+        mainSceneController.switchToScene(event, "ChangePassword.fxml");
     }
 
     @FXML
@@ -161,5 +159,10 @@ public class Session {
         mainSceneController.switchToScene(event, "LoginScherm.fxml");
     }
 
+
+    @FXML
+    private void changeLanguage(ActionEvent event) {
+        this.languageManager.changeLanguageStrategy();
+    }
 
 }

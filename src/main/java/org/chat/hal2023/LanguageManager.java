@@ -15,9 +15,18 @@ public class LanguageManager {
      */
     private final LanguageContext languageContext;
 
-    public LanguageManager() {
+    private static LanguageManager instance;
+
+    private LanguageManager() {
         this.listeners = new ArrayList<>();
         this.languageContext = new LanguageContext();
+    }
+
+    public static LanguageManager getInstance() {
+        if (instance == null) {
+            instance = new LanguageManager();
+        }
+        return instance;
     }
 
     /**
@@ -63,4 +72,5 @@ public class LanguageManager {
         }
         this.updateListeners();
     }
+
 }

@@ -72,7 +72,6 @@ public class ChatBotApp extends Application {
 
         primaryStage.setScene(loginScene);
         primaryStage.show();
-
     }
 
     /**

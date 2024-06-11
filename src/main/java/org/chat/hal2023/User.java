@@ -26,7 +26,7 @@ public class User {
     }
 
     public static User getInstance() {
-        if( instance == null ) {
+        if ( instance == null ) {
             instance = new User();
         }
         return instance;
