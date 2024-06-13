@@ -17,11 +17,6 @@ public class ChatBotResponse implements LanguageListener {
     private JsonArray documentation;
 
     /**
-     * Object that keeps track of which language is currently used.
-     */
-    private LanguageManager languageManager;
-
-    /**
      * Object that contains the current used language.
      */
     private LanguageStrategy languageStrategy;
@@ -31,18 +26,15 @@ public class ChatBotResponse implements LanguageListener {
     /**
      * Constructor. Makes sure that when this object is made the language is
      * ready to be used.
-     * @param languageManager Object that keeps track of the language that is
-     *                        used
      */
-    private ChatBotResponse(LanguageManager languageManager) {
-        this.languageManager = languageManager;
-        this.languageManager.subscribe(this);
+    private ChatBotResponse(LanguageStrategy languageStrategy) {
+        this.languageStrategy = languageStrategy;
         this.updateJSONStream(this.languageStrategy.getResponseFile());
     }
 
-    public static ChatBotResponse getInstance(LanguageManager languageManager) {
+    public static ChatBotResponse getInstance(LanguageStrategy languageStrategy) {
         if (instance == null) {
-            instance = new ChatBotResponse(languageManager);
+            instance = new ChatBotResponse(languageStrategy);
         }
         return instance;
     }
@@ -74,11 +66,11 @@ public class ChatBotResponse implements LanguageListener {
      * Changes this objects own language strategy to the one of the
      * LanguageContext. Afterward, requests the JSONStream to be updated
      * according to the new strategy.
-     * @param languageContext
+     * @param languageStrategy
      */
     @Override
-    public void updateLanguage(LanguageContext languageContext) {
-        this.languageStrategy = languageContext.getStrategy();
+    public void updateLanguage(LanguageStrategy languageStrategy) {
+        this.languageStrategy = languageStrategy;
         this.updateJSONStream(this.languageStrategy.getResponseFile());
     }
 
@@ -92,8 +84,11 @@ public class ChatBotResponse implements LanguageListener {
 
             inputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.getMessage();
         }
     }
 
+    public LanguageStrategy getLanguageStrategy() {
+        return languageStrategy;
+    }
 }
