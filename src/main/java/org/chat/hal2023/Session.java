@@ -165,7 +165,6 @@ public class Session {
         mainSceneController.switchToScene(event, "LoginScherm.fxml");
     }
 
-
     @FXML
     private void changeLanguage(ActionEvent event) {
         this.languageManager.changeLanguageStrategy();

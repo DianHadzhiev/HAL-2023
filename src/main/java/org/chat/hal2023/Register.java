@@ -23,14 +23,12 @@ public class Register {
 
     @FXML
     public boolean registreren() {
-
         if (!checkUsername()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte username in");
             alert.showAndWait();
-
         } else if (!checkEmail()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

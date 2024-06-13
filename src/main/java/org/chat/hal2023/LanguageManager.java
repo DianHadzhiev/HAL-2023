@@ -79,4 +79,5 @@ public class LanguageManager {
     public ArrayList<LanguageListener> getListeners() {
         return this.listeners;
     }
+
 }
