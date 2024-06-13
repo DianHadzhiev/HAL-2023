@@ -34,7 +34,6 @@ public class UserTest {
         assertFalse(user.checkNewEmail("invalid@example"));
     }
 
-
     @Test
     public void testCheckNewUsernameDecisionTable() {
         // Rule 1: Valid username

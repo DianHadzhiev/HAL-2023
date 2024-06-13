@@ -53,6 +53,7 @@ public class RegisterTest {
         });
     }
 
+
     @Test
     public void testValidRandvoorwaarde() {
         register.username.setText("t");
@@ -94,22 +95,23 @@ public class RegisterTest {
 
     @Test
     public void testRegistreren_InvalidUser() {
-        register.username.setText("");
-        register.email.setText("test@example.com");
-        register.password.setText("Password123");
-        register.confirmPassword.setText("Password123");
-        doNothing().when(user).saveUser(any(User.class));
-        assertTrue(register.checkForMissingField());
+            register.username.setText("");
+            register.email.setText("test@example.com");
+            register.password.setText("Password123");
+            register.confirmPassword.setText("Password123");
+            doNothing().when(user).saveUser(any(User.class));
+            assertFalse(register.validUser());
     }
 
     @Test
     public void testRegistreren_InvalidUser2() {
+        Platform.runLater(() -> {});
         register.username.setText("testUser");
         register.email.setText("invalid-email");
         register.password.setText("Password123");
         register.confirmPassword.setText("Password123");
         doNothing().when(user).saveUser(any(User.class));
-        assertFalse(register.checkEmail());
+        assertFalse(register.validUser());
     }
 
    @Test
@@ -119,7 +121,7 @@ public class RegisterTest {
         register.password.setText("");
         register.confirmPassword.setText("Password123");
         doNothing().when(user).saveUser(any(User.class));
-        assertFalse(register.checkPassword());
+       assertFalse(register.validUser());
     }
 
     @Test
@@ -129,7 +131,7 @@ public class RegisterTest {
         register.password.setText("Password123");
         register.confirmPassword.setText("");
         doNothing().when(user).saveUser(any(User.class));
-        assertFalse(register.checkConfirmPassword());
+        assertFalse(register.validUser());
     }
 
     @Test
@@ -139,12 +141,13 @@ public class RegisterTest {
         register.password.setText("Password123");
         register.confirmPassword.setText("Password123");
         doNothing().when(user).saveUser(any(User.class));
-        assertTrue(register.checkPassword());
+        assertTrue(register.validUser());
     }
 
 
     @Test
     public void testCheckIfAllFieldsAreFilled() {
+        Platform.runLater(() -> {});
         register.username.setText("testUser");
         register.email.setText("test@example.com");
         register.password.setText("Password123");
@@ -253,10 +256,37 @@ public class RegisterTest {
 
     @Test
     public void testCheckIfAllFieldsAreNotFilled12() {
-        register.username.setText("testUser");
+        register.username.setText("");
         register.email.setText("test@example.com");
         register.password.setText("");
         register.confirmPassword.setText("Password123");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled13() {
+        register.username.setText("");
+        register.email.setText("test@example.com");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled14() {
+        register.username.setText("testUser");
+        register.email.setText("");
+        register.password.setText("");
+        register.confirmPassword.setText("Password123");
+        assertTrue(register.checkForMissingField());
+    }
+
+    @Test
+    public void testCheckIfAllFieldsAreNotFilled15() {
+        register.username.setText("testUser");
+        register.email.setText("");
+        register.password.setText("Password123");
+        register.confirmPassword.setText("");
         assertTrue(register.checkForMissingField());
     }
 
