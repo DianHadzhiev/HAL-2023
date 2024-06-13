@@ -16,9 +16,9 @@
                 <tabs>
                     <Tab fx:id="addTab" closable="false" text="+">
                         <content>
-                            <AnchorPane prefHeight="543.0" prefWidth="800.0">
+                            <AnchorPane prefHeight="543.0" prefWidth="800.0" style="-fx-background-color: 999;">
                                 <children>
-                                    <TextField fx:id="addTabNameField" layoutX="323.0" layoutY="260.0" promptText="gespreks naam" />
+                                    <TextField fx:id="addTabNameField" layoutX="323.0" layoutY="260.0" promptText="gespreks naam" style="-fx-background-color: EEE9E9;" />
                                     <Button layoutX="385.0" layoutY="295.0" onAction="#addNewTab" style="-fx-background-color: #b8b8b8;" text="+" />
                                 </children>
                             </AnchorPane>
