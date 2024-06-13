@@ -118,6 +118,7 @@ public class UserTest {
 
         user.setNewPassword("password");
         verify(mockUserDAO, times(0)).updatePassword(user.getPassword(), "password");
+
     }
 
     @Test
