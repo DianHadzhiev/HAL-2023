@@ -33,7 +33,7 @@ public class LoginController {
 
     @FXML
     private void logIn() {
-        /*String username = usernameInput.getText();
+        String username = usernameInput.getText();
         String password = passwordInput.getText();
 
         if (userDAO.validateUser(username, password)) {
@@ -48,8 +48,7 @@ public class LoginController {
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte username en password in");
             alert.showAndWait();
-        }*/
-        mainSceneController.switchToScene(new ActionEvent(), "ChatBot.fxml");
+        }
     }
 
     /**
