@@ -17,14 +17,14 @@ public class LanguageManager {
 
     private static LanguageManager instance;
 
-    private LanguageManager() {
+    private LanguageManager(LanguageContext languageContext) {
         this.listeners = new ArrayList<>();
-        this.languageContext = new LanguageContext();
+        this.languageContext = languageContext;
     }
 
-    public static LanguageManager getInstance() {
+    public static LanguageManager getInstance(LanguageContext languageContext) {
         if (instance == null) {
-            instance = new LanguageManager();
+            instance = new LanguageManager(languageContext);
         }
         return instance;
     }
@@ -35,7 +35,6 @@ public class LanguageManager {
      * @param listener the new listener to be added
      */
     public void subscribe(LanguageListener listener) {
-        listener.updateLanguage(this.languageContext);
         this.listeners.add(listener);
     }
 
@@ -54,7 +53,7 @@ public class LanguageManager {
      */
     public void updateListeners() {
         for (LanguageListener l : listeners) {
-            l.updateLanguage(this.languageContext);
+            l.updateLanguage(this.languageContext.getStrategy());
         }
     }
 
@@ -73,4 +72,11 @@ public class LanguageManager {
         this.updateListeners();
     }
 
+    public LanguageContext getLanguageContext() {
+        return this.languageContext;
+    }
+
+    public ArrayList<LanguageListener> getListeners() {
+        return this.listeners;
+    }
 }

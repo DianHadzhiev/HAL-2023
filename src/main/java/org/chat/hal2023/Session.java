@@ -31,13 +31,19 @@ public class Session {
 
     private final User user = User.getInstance();
 
-    private LanguageManager languageManager = LanguageManager.getInstance();
+    private LanguageManager languageManager;
 
-    private ChatBotResponse chatBot = ChatBotResponse.getInstance(languageManager);
+    private ChatBotResponse chatBot;
 
     private Stage stage;
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
+
+    public Session() {
+        languageManager = LanguageManager.getInstance(new LanguageContext());
+        chatBot = ChatBotResponse.getInstance(languageManager.getLanguageContext().getStrategy());
+        languageManager.subscribe(chatBot);
+    }
 
     /**
      * Setter for the {@link Session#stage stage} field.

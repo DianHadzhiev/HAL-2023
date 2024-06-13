@@ -4,9 +4,8 @@ public interface LanguageListener {
 
     /**
      * Change the language that the class is currently using.
-     * @param languageContext The object that checks which language is
-     *                        currently used
+     * @param languageStrategy
      */
-    void updateLanguage(LanguageContext languageContext);
+    void updateLanguage(LanguageStrategy languageStrategy);
 
 }
