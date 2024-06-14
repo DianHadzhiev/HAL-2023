@@ -11,8 +11,8 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <TextField fx:id="username" layoutX="200.0" layoutY="230.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: EEE9E9;" />
-            <TextField fx:id="confirmUsername" layoutX="200.0" layoutY="300.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: EEE9E9;" />
+            <TextField fx:id="username" layoutX="200.0" layoutY="230.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #EEE9E9;" />
+            <TextField fx:id="confirmUsername" layoutX="200.0" layoutY="300.0" prefHeight="40.0" prefWidth="400.0" style="-fx-background-color: #EEE9E9;" />
             <Text layoutX="200.0" layoutY="227.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wat is uw nieuwe gebruikersnaam" wrappingWidth="215.7366943359375">
                <font>
                   <Font name="Arial" size="12.0" />

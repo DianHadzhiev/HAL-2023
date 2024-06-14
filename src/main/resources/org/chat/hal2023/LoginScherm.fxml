@@ -11,11 +11,11 @@
    <Pane layoutX="214.0" layoutY="180.0" prefHeight="200.0" prefWidth="354.0" style="-fx-background-color: #ffffff;">
       <children>
          <Button defaultButton="true" layoutX="250.0" layoutY="150.0" mnemonicParsing="false" onAction="#logIn" style="-fx-background-color: #b8b8b8;" text="Log In" />
-         <Button layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToRegister" style="-fx-background-color: F7F2F1;" text="Aanmelden" />
+         <Button layoutX="50.0" layoutY="150.0" mnemonicParsing="false" onAction="#switchToRegister" style="-fx-background-color: #F7F2F1;" text="Aanmelden" />
       </children>
    </Pane>
-    <TextField fx:id="usernameInput" layoutX="371.0" layoutY="228.0" promptText="gebruikersnaam" style="-fx-background-color: EEE9E9;" />
-    <PasswordField fx:id="passwordInput" layoutX="371.0" layoutY="287.0" promptText="wachtwoord" style="-fx-background-color: EEE9E9;" />
+    <TextField fx:id="usernameInput" layoutX="371.0" layoutY="228.0" promptText="gebruikersnaam" style="-fx-background-color: #EEE9E9;" />
+    <PasswordField fx:id="passwordInput" layoutX="371.0" layoutY="287.0" promptText="wachtwoord" style="-fx-background-color: #EEE9E9;" />
     <Text layoutX="253.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gebruikersnaam:" textAlignment="RIGHT" />
     <Text layoutX="271.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord:" textAlignment="RIGHT" />
 </AnchorPane>
