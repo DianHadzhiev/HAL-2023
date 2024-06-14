@@ -35,7 +35,7 @@ public class Register {
             alert.setHeaderText("Probeer opnieuw");
             alert.setContentText("Vul een correcte email in");
             alert.showAndWait();
-        } else if (!checkForMissingField()) {
+        } else if (checkForMissingField()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
             alert.setHeaderText("Probeer opnieuw");
