@@ -3,11 +3,13 @@ package org.chat.hal2023;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -38,6 +40,12 @@ public class Session {
     private Stage stage;
 
     private MainSceneController mainSceneController = MainSceneController.getInstance();
+
+    @FXML
+    private Button languageButton;
+
+    @FXML
+    private Text languageText;
 
     public Session() {
         languageManager = LanguageManager.getInstance(new LanguageContext());
@@ -127,9 +135,9 @@ public class Session {
                 Tab newTab = new Tab(tabNameText);
                 newTab.setContent(newTabContent);
 
-            // Pass the TabPane and Tab to the controller
-            session.setTabPane(tabPane);
-            session.setTab(newTab);
+                // Pass the TabPane and Tab to the controller
+                session.setTabPane(tabPane);
+                session.setTab(newTab);
 
                 // Add the new tab to the TabPane before the "+" tab
                 tabPane.getTabs().add(tabPane.getTabs().size() - 1, newTab);
@@ -168,6 +176,18 @@ public class Session {
     @FXML
     private void changeLanguage(ActionEvent event) {
         this.languageManager.changeLanguageStrategy();
+        updateLanguageText(); // Roep deze methode aan na het veranderen van de taal
     }
 
+    private void updateLanguageText() {
+        if (languageManager.getLanguageContext().getStrategy() instanceof LanguageDutch) {
+            languageText.setText("NL");
+            languageButton.setText("Taal");
+        } else if (languageManager.getLanguageContext().getStrategy() instanceof LanguageEnglish) {
+            languageText.setText("EN");
+            languageButton.setText("Language");
+        } else {
+            throw new RuntimeException("Onbekende taalstrategie gedetecteerd");
+        }
+    }
 }
