@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.chat.hal2023.Register">
    <children>
       <TextField fx:id="email" layoutX="275.0" layoutY="170.0" prefHeight="40.0" prefWidth="250.0" style="-fx-background-color: #EEE9E9;" />
@@ -16,6 +15,6 @@
       <TextField fx:id="confirmPassword" layoutX="275.0" layoutY="365.0" prefHeight="35.0" prefWidth="250.0" style="-fx-background-color: #EEE9E9;" />
       <Text layoutX="275.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wachtwoord*" />
       <Text layoutX="275.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Herhaal wachtwoord*" />
-      <Button layoutX="344.0" layoutY="420.0" mnemonicParsing="false" onAction="#registreren" onMouseClicked="#registreren" style="-fx-background-color: #b8b8b8;" text="Maak account aan" />
+      <Button defaultButton="true" layoutX="344.0" layoutY="420.0" mnemonicParsing="false" onAction="#registreren" onMouseClicked="#registreren" style="-fx-background-color: #b8b8b8;" text="Maak account aan" />
    </children>
 </AnchorPane>

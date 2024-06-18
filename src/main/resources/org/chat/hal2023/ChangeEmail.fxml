@@ -20,6 +20,6 @@
             <Font name="Arial" size="12.0" />
          </font>
       </Text>
-      <Button layoutX="370.0" layoutY="350.0" mnemonicParsing="false" onAction="#setEmail" style="-fx-background-color: #b8b8b8;" text="Bevestig" />
+      <Button defaultButton="true" layoutX="370.0" layoutY="350.0" mnemonicParsing="false" onAction="#setEmail" style="-fx-background-color: #b8b8b8;" text="Bevestig" />
    </children>
 </AnchorPane>

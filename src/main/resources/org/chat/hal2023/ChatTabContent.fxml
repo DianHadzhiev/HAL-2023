@@ -12,7 +12,7 @@
         <TextField fx:id="inputField" layoutX="150.0" layoutY="492.0" prefHeight="30.0" prefWidth="430.0" promptText="Schrijf een prompt" />
         <Button defaultButton="true" layoutX="583.0" layoutY="494.0" onAction="#sendMessage" prefHeight="25.0" prefWidth="66.0" style="-fx-background-color: #1877F2;" text="Verstuur" textFill="WHITE" />
         <Button layoutX="683.6" layoutY="494.0" onAction="#deleteTab" style="-fx-background-color: #b8b8b8;" text="Verwijder" />
-        <Button fx:id="languageButton" layoutX="71.0" layoutY="495.0" onAction="#changeLanguage" style="-fx-background-color: #b8b8b8;" text="Taal" />
+        <Button fx:id="languageButton" layoutX="71.0" layoutY="494.0" onAction="#changeLanguage" style="-fx-background-color: #b8b8b8;" text="Taal" />
         <Text fx:id="languageText" layoutX="50.0" layoutY="511.0" strokeType="OUTSIDE" strokeWidth="0.0" text="NL" />
     </children>
 </AnchorPane>
