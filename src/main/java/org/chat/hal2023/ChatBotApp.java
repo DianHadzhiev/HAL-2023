@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class ChatBotApp extends Application {
 
@@ -50,6 +52,8 @@ public class ChatBotApp extends Application {
         this.primaryStage = primaryStage;
         this.primaryStage.setResizable(false);
         this.primaryStage.setTitle("HAL-2023");
+        Image icon = new Image ("https://img.freepik.com/free-vector/chatbot-chat-message-vectorart_78370-4104.jpg");
+        primaryStage.getIcons().add(icon);
 
         Scene loginScene;
 
